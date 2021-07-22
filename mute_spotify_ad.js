@@ -2,7 +2,7 @@
 var mute = 'off';
 var play = 'on';
 
-
+// Listening each 0.5 seconds
 main_listener = setInterval(()=>{
 	// Sibling element of the element who shows the duration of the sound
 	let progress_bar = document.getElementsByClassName('progress-bar-wrapper')[0];
