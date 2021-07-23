@@ -10,9 +10,23 @@ main_listener = setInterval(()=>{
 	// Element who shows the duration of the sound
 	let duration_sound = progress_bar.nextElementSibling.textContent;
 	
-	
+	// Is playing an AD?
+	let running_ad = 0;
+
+	// Test for any evidence of a Spotify AD
+	let ad_text = document.querySelectorAll('[data-testid="track-info-advertiser"]');
+	let ad_link = document.querySelectorAll('');
+
+	if (ad_text.search('Adver')){
+		running_ad += 1;
+	}
+
+	if (ad_link.search('adclick')){
+		running_ad += 1;
+	}
+
 	// If the sound duration is equal to 0:30, then it's a spotify ad
-    if (duration_sound === "0:30"){
+    if (running_ad > 0){
 		// Log
 		console.log("----> Keeping the sound muted, it's a Spotify AD!")
 
@@ -31,7 +45,7 @@ main_listener = setInterval(()=>{
 	} 
 
 	// If the sound duration is not equal to 0:30, then it's just a regular song
-	if (duration_sound !== "0:30"){
+	if (duration_sound === 0){
 		// Log
 		console.log("----> Playing the sound, isn't a Spotify AD!")
 		
@@ -46,7 +60,6 @@ main_listener = setInterval(()=>{
 			// Keep playing the sound, no need to click again to mute if isn't an spotify ad
 			play = 'on';
 		}
-
 
 	}	
 
