@@ -13,17 +13,24 @@ main_listener = setInterval(()=>{
 	// Is playing an AD?
 	let running_ad = 0;
 
-	// Test for any evidence of a Spotify AD
-	let ad_text = document.querySelectorAll('[data-testid="track-info-advertiser"]');
-	let ad_link = document.querySelectorAll('');
+	// Test for any evidence of a Spotify AD using custom data attributes
+	let arr_ad = [];
+	
+	let ad_text_1 = document.querySelectorAll('[data-testid="track-info-advertiser"]');
+	let ad_text_2 = document.querySelectorAll('[data-testid="context-item-info-ad-subtitle"]');
+	let ad_text_3 = document.querySelectorAll('[data-testid="context-item-info-subtitles"]');
+	
+	arr_ad = [
+		ad_text_1,
+		ad_text_2,
+		ad_text_3
+	];
 
-	if (ad_text.search('Adver')){
-		running_ad += 1;
-	}
-
-	if (ad_link.search('adclick')){
-		running_ad += 1;
-	}
+	arr_ad.map((possible_ad)=>{
+		if (possible_ad.length > 0){
+			running_ad += 1;
+		}
+	})
 
 	// If the sound duration is equal to 0:30, then it's a spotify ad
     if (running_ad > 0){
