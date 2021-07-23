@@ -1,6 +1,6 @@
 // Control variables
 var mute = 'off';
-var play = 'on';
+var play = 'off';
 
 // Listening each 0.5 seconds
 main_listener = setInterval(()=>{
@@ -18,12 +18,10 @@ main_listener = setInterval(()=>{
 	
 	let ad_text_1 = document.querySelectorAll('[data-testid="track-info-advertiser"]');
 	let ad_text_2 = document.querySelectorAll('[data-testid="context-item-info-ad-subtitle"]');
-	let ad_text_3 = document.querySelectorAll('[data-testid="context-item-info-subtitles"]');
 	
 	arr_ad = [
 		ad_text_1,
-		ad_text_2,
-		ad_text_3
+		ad_text_2
 	];
 
 	arr_ad.map((possible_ad)=>{
@@ -32,40 +30,32 @@ main_listener = setInterval(()=>{
 		}
 	})
 
+	// Get the button element
+	btn = document.getElementsByClassName('volume-bar__icon-button control-button')[0];
+
+	// Check if the button is or isn't muted
+	is_muted = btn.getAttribute('aria-label');
+
 	// If the sound duration is equal to 0:30, then it's a spotify ad
     if (running_ad > 0){
 		// Log
 		console.log("----> Keeping the sound muted, it's a Spotify AD!")
-
-		// Flag to make only one click when the spotify ad comes
-		play = 'off';
-
-		// Then mutes the sound 
-		if (mute == 'off'){
-			// Click on the mute button 
-			btn = document.getElementsByClassName('volume-bar__icon-button control-button')[0].click();
-
-			// Change mute variable value to avoid multiple clicks
-			mute = 'on';
+		
+		// If isn't muted, mute
+		if (is_muted == 'Mute'){
+			btn.click();
 		}
 
 	} 
 
-	// If the sound duration is not equal to 0:30, then it's just a regular song
-	if (duration_sound === 0){
+	// If no evidence of AD exists then it's just a regular song
+	if (running_ad === 0){
 		// Log
 		console.log("----> Playing the sound, isn't a Spotify AD!")
-		
-		// Flag to keep the flow when it'll need to mute the sound
-		mute = 'off';
 
-		// Unmute the sound again
-		if (play == 'off'){
-			// Click on the mute button
-			btn = document.getElementsByClassName('volume-bar__icon-button control-button')[0].click();
-
-			// Keep playing the sound, no need to click again to mute if isn't an spotify ad
-			play = 'on';
+		// If it's muted, unmute
+		if (is_muted == 'Unmute'){
+			btn.click();
 		}
 
 	}	
