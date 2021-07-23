@@ -7,25 +7,24 @@ main_listener = setInterval(()=>{
 	// Sibling element of the element who shows the duration of the sound
 	let progress_bar = document.getElementsByClassName('progress-bar-wrapper')[0];
 
-	// Element who shows the duration of the sound
-	let duration_sound = progress_bar.nextElementSibling.textContent;
-	
 	// Is playing an AD?
 	let running_ad = 0;
 
 	// Test for any evidence of a Spotify AD using custom data attributes
-	let arr_ad = [];
-	
+
 	let ad_text_1 = document.querySelectorAll('[data-testid="track-info-advertiser"]');
 	let ad_text_2 = document.querySelectorAll('[data-testid="context-item-info-ad-subtitle"]');
 	
-	arr_ad = [
+	// Array of evidences
+	let = arr_ad = [
 		ad_text_1,
 		ad_text_2
 	];
 
+	// Check if there's an non element in the list of evidences
 	arr_ad.map((possible_ad)=>{
 		if (possible_ad.length > 0){
+			// If exists, increment control play or mute variable
 			running_ad += 1;
 		}
 	})
