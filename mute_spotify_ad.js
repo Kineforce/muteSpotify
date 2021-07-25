@@ -1,4 +1,7 @@
-// Listening each 0.5 seconds
+// Runn interval at each x milliseconds
+let stamp = 1000
+
+// Listener
 main_listener = setInterval(()=>{
 	// Sibling element of the element who shows the duration of the sound
 	let progress_bar = document.getElementsByClassName('progress-bar-wrapper')[0];
@@ -55,4 +58,4 @@ main_listener = setInterval(()=>{
 
 	}	
 
-}, 500)
+}, stamp)
