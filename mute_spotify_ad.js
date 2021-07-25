@@ -34,7 +34,7 @@ main_listener = setInterval(()=>{
 	// Check if the button is or isn't muted
 	is_muted = btn.getAttribute('aria-label');
 
-	// If the sound duration is equal to 0:30, then it's a spotify ad
+	// If there's any evidence of a running AD
     if (running_ad > 0){
 		// Log
 		console.log("----> Keeping the sound muted, it's a Spotify AD!")
